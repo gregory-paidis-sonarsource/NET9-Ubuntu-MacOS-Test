@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -35,9 +35,6 @@ jobs:
 
     - name: Install .NET SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
-
-    - name: Install dotnet-coverage
-      run: dotnet tool install --global dotnet-coverage
 
     - name: Checkout
       uses: actions/checkout@v3
