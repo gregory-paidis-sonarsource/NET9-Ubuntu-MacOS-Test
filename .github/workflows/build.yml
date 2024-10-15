@@ -16,9 +16,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         include:
-          - os: ubuntu-latest  # For Linux
+          - os: ubuntu-latest
             PROJECT_NAME: NET9-Ubuntu-Test
-          - os: macos-latest  # For Windows
+          - os: macos-latest
             PROJECT_NAME: NET9-MacOS-Test
 
     steps:
