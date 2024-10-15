@@ -15,6 +15,11 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest  # For Linux
+            PROJECT_NAME: NET9-Ubuntu-Test
+          - os: macos-latest  # For Windows
+            PROJECT_NAME: NET9-MacOS-Test
 
     steps:
     - name: Setup JDK 17
@@ -43,7 +48,7 @@ jobs:
       run: dotnet restore CSharpLatest/CSharpLatest.csproj
 
     - name: Scanner begin
-      run: dotnet sonarscanner begin /k:"gregory-paidis-sonarsource_NET9-Ubuntu-MacOS-Test" /o:"greggy42" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+      run: dotnet sonarscanner begin /k:"${{matrix.PROJECT_NAME}}" /o:"greggy42" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
 
     - name: Build
       run: dotnet build --no-incremental CSharpLatest/CSharpLatest.csproj
